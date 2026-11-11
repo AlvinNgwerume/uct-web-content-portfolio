@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UCT Academic Unit Portal & Content Audit Demo | Alvin Ngwerume</title>
+    <meta name="description" content="Demonstration project showcasing UCT web content curation, HTML5/CSS3 architecture, accessibility, and GA4 content auditing for UCT CMD Web Content Specialist application.">
+    <style>
+        :root {
+            --uct-navy: #002B49;
+            --uct-blue: #0072CE;
+            --uct-light-bg: #F4F6F8;
+            --uct-text-dark: #222222;
+            --uct-accent-gold: #D4AF37;
+            --uct-border: #D1D5DB;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--uct-text-dark);
+            background-color: var(--uct-light-bg);
+            line-height: 1.6;
+        }
+
+        /* Top Institutional Header */
+        .uct-top-bar {
+            background-color: var(--uct-navy);
+            color: #ffffff;
+            padding: 12px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid var(--uct-blue);
+        }
+
+        .uct-top-bar .brand-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        .uct-top-bar .portfolio-tag {
+            font-size: 0.85rem;
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 4px 10px;
+            border-radius: 4px;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+            padding: 0 5%;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li a {
+            display: block;
+            padding: 16px 20px;
+            color: var(--uct-navy);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.95rem;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .nav-links li a:hover, .nav-links li a.active {
+            color: var(--uct-blue);
+            border-bottom-color: var(--uct-blue);
+            background-color: #FAFAFA;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Banner */
+        .hero-banner {
+            background: linear-gradient(135deg, var(--uct-navy) 0%, var(--uct-blue) 100%);
+            color: #ffffff;
+            padding: 40px;
+            border-radius: 6px;
+            margin-bottom: 30px;
+        }
+
+        .hero-banner h1 {
+            font-size: 2.1rem;
+            margin-bottom: 12px;
+        }
+
+        .hero-banner p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            opacity: 0.95;
+        }
+
+        /* Section Layout */
+        .demo-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 850px) {
+            .demo-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 6px;
+            padding: 28px;
+            margin-bottom: 30px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border: 1px solid var(--uct-border);
+        }
+
+        .card h2 {
+            color: var(--uct-navy);
+            font-size: 1.4rem;
+            margin-bottom: 16px;
+            border-bottom: 2px solid var(--uct-light-bg);
+            padding-bottom: 8px;
+        }
+
+        /* Audit Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+
+        table th, table td {
+            padding: 12px 14px;
+            text-align: left;
+            border-bottom: 1px solid var(--uct-border);
+        }
+
+        table th {
+            background-color: var(--uct-light-bg);
+            color: var(--uct-navy);
+            font-weight: bold;
+        }
+
+        .badge-pass {
+            background-color: #D1E7DD;
+            color: #0F5132;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        .badge-fix {
+            background-color: #FFF3CD;
+            color: #664D03;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        /* Callout Box */
+        .callout {
+            background-color: #EBF3FA;
+            border-left: 4px solid var(--uct-blue);
+            padding: 16px;
+            border-radius: 0 4px 4px 0;
+            margin: 15px 0;
+        }
+
+        footer {
+            background-color: var(--uct-navy);
+            color: #ffffff;
+            text-align: center;
+            padding: 25px 20px;
+            margin-top: 50px;
+            font-size: 0.85rem;
+            border-top: 4px solid var(--uct-blue);
+        }
+
+        footer a {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Header -->
+    <header class="uct-top-bar">
+        <div class="brand-title">UNIVERSITY OF CAPE TOWN</div>
+        <div class="portfolio-tag">Web Content Specialist Portfolio Showcase</div>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+            <li><a href="#page-demo" class="active">Academic Unit Demo Page</a></li>
+            <li><a href="#audit-report">Content Audit Checklist</a></li>
+            <li><a href="#ga4-analytics">GA4 Analytics Dashboard</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="container">
+
+        <!-- Hero Section -->
+        <section class="hero-banner">
+            <h1>Digital Content Curation & Compliance Demo</h1>
+            <p>Designed and curated by <strong>Alvin Ngwerume</strong> to demonstrate HTML5 semantic layout, WCMS governance, accessibility compliance, and GA4 user engagement optimization for UCT CMD.</p>
+        </section>
+
+        <div class="demo-grid">
+            
+            <!-- Left Column: Content Demo & Governance Audit -->
+            <div>
+                
+                <!-- Section 1: Academic Unit Page Demo -->
+                <article id="page-demo" class="card">
+                    <h2>1. Sample Curated Page: Department of Social Development</h2>
+                    <div class="callout">
+                        <strong>Editorial Note:</strong> Written and curated following UCT Digital Presence Guidelines—structured with semantic heading hierarchy (H1-H3), clear call-to-action triggers, and high readability scores.
+                    </div>
+                    
+                    <p>The Department of Social Development at UCT prepares students to address complex social welfare, community development, and policy challenges across Southern Africa. Our programs combine rigorous theoretical foundations with field practice.</p>
+                    
+                    <h3 style="color: var(--uct-navy); margin-top: 18px; margin-bottom: 8px;">Key Academic Focus Areas</h3>
+                    <ul style="margin-left: 20px; margin-bottom: 15px;">
+                        <li><strong>Social Policy & Governance:</strong> Analyzing public welfare frameworks and institutional interventions.</li>
+                        <li><strong>Community Development:</strong> Facilitating grassroots empowerment and sustainable economic initiatives.</li>
+                        <li><strong>Clinical Social Work:</strong> Direct practice, field placement, and therapeutic interventions.</li>
+                    </ul>
+
+                    <p><em>Contact Content Manager:</em> <a href="mailto:socialdev@uct.ac.za" style="color: var(--uct-blue);">socialdev@uct.ac.za</a> | Building 3, Rondebosch Campus</p>
+                </article>
+
+                <!-- Section 2: Content Audit Checklist -->
+                <article id="audit-report" class="card">
+                    <h2>2. Website Content & Governance Audit Checklist</h2>
+                    <p>Sample output from a periodic compliance audit across high-profile departmental web pages:</p>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Audit Criteria</th>
+                                <th>Standard / Metric</th>
+                                <th>Status</th>
+                                <th>Action Taken</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Accessibility (WCAG 2.1)</td>
+                                <td>Color Contrast & Alt Text</td>
+                                <td><span class="badge-pass">COMPLIANT</span></td>
+                                <td>Verified contrast ratio > 4.5:1; missing alt tags updated.</td>
+                            </tr>
+                            <tr>
+                                <td>Heading Hierarchy</td>
+                                <td>H1 to H4 Structure</td>
+                                <td><span class="badge-pass">PASS</span></td>
+                                <td>Corrected skipped heading levels for screen readers.</td>
+                            </tr>
+                            <tr>
+                                <td>Hyperlink Hygiene</td>
+                                <td>Zero Broken Links</td>
+                                <td><span class="badge-fix">REMEDIATED</span></td>
+                                <td>Redirected 4 broken legacy links to updated course handbook.</td>
+                            </tr>
+                            <tr>
+                                <td>Metadata & SEO</td>
+                                <td>Title Tag & Description</td>
+                                <td><span class="badge-pass">OPTIMIZED</span></td>
+                                <td>Updated meta descriptions with relevant academic keywords.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </article>
+
+            </div>
+
+            <!-- Right Column: GA4 Analytics & Performance Widget -->
+            <div>
+                <aside id="ga4-analytics" class="card">
+                    <h2>3. GA4 Content Analytics Summary</h2>
+                    <p style="font-size: 0.9rem; margin-bottom: 15px;">Monthly performance collation for academic landing pages:</p>
+                    
+                    <div style="background-color: var(--uct-light-bg); padding: 15px; border-radius: 4px; margin-bottom: 12px;">
+                        <span style="font-size: 0.8rem; color: #555;">Monthly Pageviews</span>
+                        <h3 style="color: var(--uct-navy); font-size: 1.6rem;">42,850</h3>
+                        <span style="font-size: 0.75rem; color: #0F5132;">▲ 14% vs previous month</span>
+                    </div>
+
+                    <div style="background-color: var(--uct-light-bg); padding: 15px; border-radius: 4px; margin-bottom: 12px;">
+                        <span style="font-size: 0.8rem; color: #555;">Avg. Engagement Time</span>
+                        <h3 style="color: var(--uct-navy); font-size: 1.6rem;">2m 45s</h3>
+                        <span style="font-size: 0.75rem; color: #0F5132;">Above UCT benchmark (2m 10s)</span>
+                    </div>
+
+                    <div style="background-color: var(--uct-light-bg); padding: 15px; border-radius: 4px;">
+                        <span style="font-size: 0.8rem; color: #555;">Primary Traffic Channel</span>
+                        <h3 style="color: var(--uct-navy); font-size: 1.2rem;">Organic Search (68%)</h3>
+                    </div>
+
+                    <div class="callout" style="margin-top: 15px; font-size: 0.85rem;">
+                        <strong>Optimization Insight:</strong> Re-structuring course registration links above the fold increased mobile conversion by 18%.
+                    </div>
+                </aside>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>University of Cape Town (UCT) CMD Web Content Specialist Showcase | Created by <strong>Alvin Dzingai Ngwerume</strong></p>
+        <p style="margin-top: 6px;"><a href="https://linkedin.com/in/alvinngwerume" target="_blank">LinkedIn Profile</a> | Built with HTML5 & CSS3</p>
+    </footer>
+
+</body>
+</html>
